@@ -1,0 +1,16 @@
+{% load static %}
+<html>
+<head><link rel="stylesheet" href="{% static 'css/style.css' %}"></head>
+<body>
+    <div class="form-card">
+        <div class="progress-bar"><div class="step active"></div><div class="step"></div><div class="step"></div></div>
+        <h2>Start Journey</h2>
+        <form method="POST" action="{% url 'home_app:register' %}">
+            {% csrf_token %}
+            <div class="input-group"><label>Username</label><input type="text" name="username" required></div>
+            <button type="submit" class="btn-next">Continue &rarr;</button>
+        </form>
+    </div>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

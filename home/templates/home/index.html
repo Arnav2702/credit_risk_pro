@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Risk Analysis</title>
+    <style>
+        /* CSS Styling */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #fcfcfc;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Navbar Style */
+        nav {
+            background-color: #ffcc00; 
+            padding: 1rem 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #000;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        /* Buttons Style */
+        .login-btn { 
+            background-color: #000;
+            color: #ffcc00;
+            padding: 10px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.3s;
+            border: 2px solid #000;
+        }
+
+        .register-btn {
+            background-color: transparent;
+            color: #000;
+            padding: 10px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            border: 2px solid #000; /* Outline effect */
+            transition: 0.3s;
+        }
+
+        .login-btn:hover {
+            background-color: #333;
+            border-color: #333;
+            transform: translateY(-2px);
+        }
+
+        .register-btn:hover {
+            background-color: #000;
+            color: #ffcc00;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, #ffcc00 0%, #ffdb4d 100%);
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 15px;
+            color: #000;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            color: #222;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        /* Card Section */
+        .container {
+            padding: 80px 10%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: -50px; /* Cards overlap hero slightly */
+        }
+
+        .card {
+            background: white;
+            padding: 35px 25px;
+            border-radius: 15px;
+            border-bottom: 6px solid #ffcc00;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #000;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            nav { padding: 1rem 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">CREDIT<span style="color: #eb0c0c;">RISK</span></div>
+        <div class="nav-links">
+            <a href="{% url 'home_app:login' %}" class="login-btn">Login</a>
+            <a href="{% url 'home_app:register' %}" class="register-btn">Register</a>
+        </div>
+    </nav> 
+
+    <div class="hero">
+        <h1>Smart Risk Analysis</h1>
+        <p>Predicting financial stability with precision. Analyze, evaluate, and mitigate risks using our advanced machine learning scoring models.</p>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <h3>Assessment</h3>
+            <p>Calculate probability of default using industry-leading algorithms and real-time data.</p>
+        </div>
+        <div class="card">
+            <h3>Insights</h3>
+            <p>Visualize complex credit trends and borrower behavior through interactive dashboards.</p>
+        </div>
+        <div class="card">
+            <h3>Security</h3>
+            <p>Bank-grade encryption to ensure your financial portfolios and data remain confidential.</p>
+        </div>
+    </div>
+
+</body>
+</html>

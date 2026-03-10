@@ -1,0 +1,11 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/dashboard_style.css' %}">
+<div class="card animate-in" style="max-width: 500px; margin: 50px auto;">
+    <h2>Apply for Loan</h2>
+    <form method="POST" id="loanForm">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn-primary">Submit Application</button>
+    </form>
+</div>
+<script src="{% static 'js/dashboard_script.js' %}"></script>

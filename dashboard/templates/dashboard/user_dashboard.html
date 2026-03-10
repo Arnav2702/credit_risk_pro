@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | CreditRiskPro</title>
+    <style>
+        /* --- Fresh Professional CSS Variables --- */
+        :root {
+            --yellow: #FFCC00;
+            --dark: #1A1A1A;
+            --red: #D93025;
+            --white: #FFFFFF;
+            --bg: #F4F4F9;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: var(--bg);
+            margin: 0;
+            overflow-x: hidden;
+            color: var(--dark);
+        }
+
+        /* --- Header & Top Right Welcome --- */
+        .header {
+            padding: 20px 40px;
+            display: flex;
+            justify-content: flex-end;
+            animation: slideDown 0.8s ease;
+        }
+
+        .welcome-badge {
+            color: var(--red);
+            font-weight: 700;
+            font-size: 1.1rem;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--yellow);
+        }
+
+        /* --- Main Layout --- */
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .hero-section {
+            margin-bottom: 40px;
+            animation: fadeIn 1.2s ease;
+        }
+
+        h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        p { color: #666; font-size: 1.1rem; }
+
+        /* --- Big Interactive Buttons --- */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .action-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: var(--shadow);
+            border-bottom: 8px solid transparent;
+            overflow: hidden;
+            animation: cardPop 0.8s ease backwards;
+        }
+
+        /* Delay for second card animation */
+        .action-card:nth-child(2) { animation-delay: 0.2s; }
+
+        .action-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .action-card.loan-card:hover { border-color: var(--yellow); }
+        .action-card.history-card:hover { border-color: var(--dark); }
+
+        .icon-circle {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .loan-card .icon-circle { background: #FFF9E1; }
+        .history-card .icon-circle { background: #EAEAEA; }
+
+        .action-card:hover .icon-circle {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .card-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            color: #777;
+            line-height: 1.5;
+        }
+
+        /* --- Animations --- */
+        @keyframes slideDown {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes cardPop {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* Logout Link */
+        .logout-link {
+            margin-top: 60px;
+            display: inline-block;
+            text-decoration: none;
+            color: #888;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        .logout-link:hover { color: var(--red); }
+
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="welcome-badge" id="userBadge">
+            Welcome, {{ customer.full_name }}!
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="hero-section">
+            <h1>Financial Dashboard</h1>
+            <p>One way solution for your loan approval</p>
+        </div>
+
+        <div class="card-grid">
+            <div class="action-card loan-card" onclick="handleAction('apply')">
+                <div class="icon-circle">💰</div>
+                <span class="card-title">Apply Loan</span>
+                <p class="card-desc">Naye loan ke liye apply karein aur turant approval check karein.</p>
+            </div>
+
+            <div class="action-card history-card" onclick="handleAction('history')">
+                <div class="icon-circle">📜</div>
+                <span class="card-title">View History</span>
+                <p class="card-desc">Apne purane saare loans aur transactions ki list dekhein.</p>
+            </div>
+        </div>
+
+        <a href="/index/" class="logout-link">Securely Logout →</a>
+    </div>
+
+    <script>
+        function handleAction(type) {
+            // Click sound effect ya animation ke liye hum console pe msg dikha sakte hain
+            console.log("Action Triggered: " + type);
+            
+            if(type === 'apply') {
+                alert("Navigating to Loan Application...");
+                location.href = "{% url 'dashboard_app:apply_loan' customer.username %}"; 
+            } else {
+                alert("Loading your history...");
+                location.href = "{% url 'dashboard_app:loan_history' customer.username %}";
+            }
+        }
+
+        // Welcome badge shake effect on load
+        window.onload = () => {
+            const badge = document.getElementById('userBadge');
+            badge.style.transition = "all 0.5s ease";
+            setTimeout(() => {
+                badge.style.transform = "scale(1.1)";
+                setTimeout(() => badge.style.transform = "scale(1)", 200);
+            }, 1000);
+        };
+    </script>
+</body>
+</html>

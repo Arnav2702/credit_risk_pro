@@ -1,0 +1,25 @@
+:root {
+    --primary-yellow: #ffcc00;
+    --dark-bg: #1a1a1a;
+    --white: #ffffff;
+    --light-gray: #f8f9fa;
+}
+
+body { font-family: 'Segoe UI', sans-serif; background: var(--light-gray); margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+
+.form-card { background: var(--white); padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 100%; max-width: 450px; border-top: 6px solid var(--primary-yellow); transition: 0.3s; }
+
+.progress-bar { display: flex; gap: 10px; margin-bottom: 25px; }
+.step { height: 5px; flex: 1; background: #eee; border-radius: 5px; }
+.step.active { background: var(--primary-yellow); }
+
+.input-group { margin-bottom: 20px; }
+label { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 8px; color: #444; }
+input, select { width: 100%; padding: 12px; border: 2px solid #eee; border-radius: 10px; box-sizing: border-box; }
+input:focus { border-color: var(--primary-yellow); outline: none; }
+
+.btn-next, .btn-finish { width: 100%; background: var(--dark-bg); color: var(--primary-yellow); border: none; padding: 15px; border-radius: 10px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+.btn-next:hover { background: #333; transform: scale(1.02); }
+
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.messages { background: #fee; color: #d00; padding: 10px; border-radius: 8px; list-style: none; margin-bottom: 15px; font-size: 0.9rem; }

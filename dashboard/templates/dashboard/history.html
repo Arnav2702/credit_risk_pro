@@ -1,0 +1,22 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/dashboard_style.css' %}">
+<div class="card animate-in">
+    <h2>Transaction History</h2>
+    <table style="width:100%; border-collapse: collapse;">
+        <thead>
+            <tr style="border-bottom: 2px solid #eee;">
+                <th>Amount</th><th>Status</th><th>Interest</th><th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for loan in loans %}
+            <tr style="transition:0.3s; cursor:pointer;" onmouseover="this.style.background='#fff9e1'" onmouseout="this.style.background='white'">
+                <td style="padding:15px;">₹{{ loan.loan_amount }}</td>
+                <td style="padding:15px; font-weight:bold;">{{ loan.status }}</td>
+                <td style="padding:15px;">{{ loan.interest_rate }}%</td>
+                <td style="padding:15px;">{{ loan.created_at|date:"d M, Y" }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

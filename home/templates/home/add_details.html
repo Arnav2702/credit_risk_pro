@@ -1,0 +1,28 @@
+{% load static %}
+<html>
+<head><link rel="stylesheet" href="{% static 'css/style.css' %}"></head>
+<body>
+    <div class="form-card" style="max-width: 500px;">
+        <div class="progress-bar"><div class="step active"></div><div class="step active"></div><div class="step active"></div></div>
+        <h2>Personal Details</h2>
+        <form method="POST" action="{% url 'home_app:add_details' %}">
+            {% csrf_token %}
+            <div class="grid">
+                <div><label>Full Name</label><input type="text" name="full_name" required></div>
+                <div><label>PAN</label><input type="text" name="pan_number" required></div>
+                <div><label>Aadhar</label><input type="text" name="aadhar_number" required></div>
+                <div><label>Monthly Income</label><input type="number" name="monthly_income" required></div>
+                
+                <div><label>Total Debt</label><input type="number" name="current_total_debt" required></div>
+                <div><label>CIBIL Score</label><input type="number" name="cibil_score" required></div>
+            </div>
+            
+            <div class="input-group" style="margin-top:15px">
+                <label><input type="checkbox" name="is_salaried"> Are you salaried?</label>
+            </div>
+            <button type="submit" class="btn-finish">Finish Registration &check;</button>
+        </form>
+    </div>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
