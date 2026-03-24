@@ -80,10 +80,19 @@ WSGI_APPLICATION = "credit_risk_pro.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
+import os
+from dotenv import load_dotenv
+
+load_dotenv() # Ye line .env file ko load karegi
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'credit_risk_pro_db', 
+        'USER': 'postgres',        
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': '127.0.0.1',       
+        'PORT': '5432',
     }
 }
 
